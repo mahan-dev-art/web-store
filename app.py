@@ -4,6 +4,7 @@ from blueprints.admin import app as admin
 from blueprints.user import app as user
 import config
 from config import db
+from flask_login import LoginManager
 
 
 

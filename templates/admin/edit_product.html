@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <title>ویرایش محصولات</title>
+{% endblock header %}
+
+{% block body %}
+    <form action="{{ url_for('admin.edit_product', id=product.id) }}" method="post">
+        <input type="text" name="name" placeholder="نام محصول" value="{{ product.name }}"><br>
+        <textarea name="description" placeholder="توضیحات">{{ product.description }}</textarea><br>
+        <input type="text" name="price" placeholder="قیمت محصول" value="{{ product.price }}"><br>
+        <label for="active">فعال</label><input type="checkbox" name="active" {{ "checked" if product.active == 1 }}>
+        <input type="submit" value="submit">
+    </form>
+{% endblock body %}

@@ -20,6 +20,7 @@
                 <td>{{ p.description }}</td>
                 <td>{{ p.price }}</td>
                 <td>{{ "بله" if p.active == 1 else "خیر" }}</td>
+                <td><a href="{{ url_for('admin.edit_product', id=p.id) }}">ویرایش</a></td>
             </tr>
         {% endfor %}
             

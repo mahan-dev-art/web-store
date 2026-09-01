@@ -2,6 +2,7 @@ from flask import *
 from models.product import Product
 from config import db
 
+
 app = Blueprint("admin" , __name__)
 
 @app.before_request
@@ -32,20 +33,34 @@ def products():
     if request.method == "GET":
         products = Product.query.all()
         return render_template("admin/products.html" , products=products)
+
+    name = request.form.get("name" , None)
+    description = request.form.get("description" , None)
+    price = request.form.get("price" , None)
+    active = request.form.get("active" , None)
+
+    p = Product(name=name, description=description, price=int(price), active=1 if active is not None else 0)
+    db.session.add(p)
+    db.session.commit()
+
+    return redirect("/admin/dashboard/products")
+
+
+@app.route("/admin/dashboard/edit-product/<int:id>" , methods=["GET" , "POST"])
+def edit_product(id):
+    product = Product.query.filter(Product.id == id).first_or_404()
+
+    if request.method == "GET":
+        return render_template("admin/edit_product.html" , product=product)
+
+    product.name = request.form.get("name" , None)
+    product.description = request.form.get("description" ,None)
+    product.price = request.form.get("price" , None)
+    if request.form.get("active") == None:
+        product.active = 0
     else:
-        name = request.form.get("name" , None)
-        description = request.form.get("description" , None)
-        price = request.form.get("price" , None)
-        active = request.form.get("active" , None)
-        
-        p = Product(name=name , description=description , price = price)
-        if active == None:
-            p.active = 0
-        else:
-            p.active = 1
-            
-        db.session.add(p)
-        db.session.commit()
-        
-        return "Done"
-    
+        product.active = 1
+
+    db.session.commit()
+
+    return redirect(url_for("admin.products" , id=id))
