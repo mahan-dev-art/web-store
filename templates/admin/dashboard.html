@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
-    dashboard
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+    <title>داشبورد ادمین</title>
+{% endblock header %}
+
+{% block body %}
+    <h1>dashboard</h1>
+    <a href="/admin/dashboard/products">صفحه محصولات</a>
+{% endblock body %}
