@@ -3,5 +3,10 @@ from flask import *
 app = Blueprint("general" , __name__)
 
 @app.route("/")
-def home():
+def main():
     return "hello"
+
+@app.route("/about")
+def about():
+    return "hello"
+
