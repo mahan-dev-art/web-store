@@ -5,8 +5,10 @@
 {% endblock header %}
 
 {% block body %}
-    <form action="{{ url_for('admin.edit_product', id=product.id) }}" method="post">
+    <img src="/static/cover/{{ product.id }}.png" style="width: 20px;">
+    <form action="{{ url_for('admin.edit_product', id=product.id) }}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label for="cover">cover : </label><input type="file" name="cover"><br>
         <input type="text" name="name" placeholder="نام محصول" value="{{ product.name }}"><br>
         <textarea name="description" placeholder="توضیحات">{{ product.description }}</textarea><br>
         <input type="text" name="price" placeholder="قیمت محصول" value="{{ product.price }}"><br>
