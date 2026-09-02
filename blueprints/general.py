@@ -1,12 +1,14 @@
 from flask import *
+from models.product import Product
 
 app = Blueprint("general" , __name__)
 
 @app.route("/")
 def main():
-    return "hello"
+    products = Product.query.all()
+    return render_template("index.html" , products = products)
 
 @app.route("/about")
 def about():
-    return "hello"
+    return render_template("about.html")
 
