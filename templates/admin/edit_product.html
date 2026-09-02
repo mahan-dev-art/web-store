@@ -6,6 +6,7 @@
 
 {% block body %}
     <form action="{{ url_for('admin.edit_product', id=product.id) }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <input type="text" name="name" placeholder="نام محصول" value="{{ product.name }}"><br>
         <textarea name="description" placeholder="توضیحات">{{ product.description }}</textarea><br>
         <input type="text" name="price" placeholder="قیمت محصول" value="{{ product.price }}"><br>
