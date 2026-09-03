@@ -1,0 +1,10 @@
+from sqlalchemy import *
+from sqlalchemy.orm import *
+from config import db
+
+class Cart(db.Model):
+    __tablename__ =  "carts"
+    id = Column(Integer , primary_key=True , index=True)
+    status = Column(String , default="pending")
+    user_id = Column(Integer , ForeignKey('users.id') , nullable=False , index=True)
+    user = db.relationship('User' , backref = backref('carts' , lazy = 'dynamic'))
