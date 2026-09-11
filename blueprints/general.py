@@ -5,8 +5,13 @@ app = Blueprint("general" , __name__)
 
 @app.route("/")
 def main():
-    products = Product.query.filter(Product.active == 1).all()
-    return render_template("index.html" , products = products)
+    search = request.args.get("search" , None)
+    products = Product.query.filter(Product.active == 1)
+    if search != None : 
+        products = products.filter(Product.name.like(f"%{search}%"))
+        
+    products = products.all()
+    return render_template("index.html" , products = products , search = search)
 
 @app.route("/product/<int:id>/<name>")
 def product(id , name):

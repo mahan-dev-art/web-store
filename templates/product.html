@@ -5,16 +5,24 @@
 {% endblock header %}
 
 {% block body %}
-    
-    {{ product.id }}<br>
-    {{ product.name }}<br>
-    {{ product.price }}<br>
+    {% include 'parts/header.html' %}
 
-    <form action="/add-to-cart" method="get">
-        <input type="hidden" name="id" value="{{ product.id }}">
-        <input type="submit" value="اضافه کردن به سبد خرید">
-    </form>
+    <div class="product-detail-box">
+        <div>
+            <img src="/static/cover/{{ product.id }}.png" style="width: 300px;" />
+        </div>
+        <section>
+            <h1>{{ product.name }}</h1>
+            <h4>شماره محصول : {{ product.id }}</h4>
+            <div class="price">
+                <b>{{ '{:,}'.format(product.price) }}</b> <b>تومان</b>
+                <a class="add-to-cart-btn2" href="/add-to-cart?id={{ product.id }}">افزودن به سبد خرید</a>
+            </div>
+        </section>
+    </div>
 
-
-        
+    <article class="product-description-box">
+        <h2>مشخصات</h2>
+        <p>{{ product.description }}</p>
+    </article>
 {% endblock body %}

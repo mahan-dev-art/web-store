@@ -1,0 +1,14 @@
+<a href="{{ url_for('general.product', id=p.id, name=p.name) }}" class="product_link">
+  <section class="product_box">
+    <img src="/static/cover/{{ p.id }}.png" style="width: 200px;" />
+
+    <h3>{{ p.name }}</h3>
+
+    <p>{{ p.description|truncate(50) }}</p>
+
+    <div class="price">
+      <b>{{ '{:,}'.format(p.price) }}</b>
+      <span>تومان</span>
+    </div>
+  </section>
+</a>
