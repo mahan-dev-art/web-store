@@ -27,17 +27,26 @@ def login():
             if user != None:
                 flash("نام کاربری دیگری انتخاب کنید")
                 return redirect(url_for('user.login'))
-            user = User(username = username , password = sha256_crypt.encrypt(password) , phone = phone , address = address)
+            
+            user = User(
+                username = username,
+                password = sha256_crypt.encrypt(password),
+                phone = phone,
+                address = address
+            )
             
             db.session.add(user)
             db.session.commit()
             login_user(user)
+            
         else:
             user = User.query.filter(User.username == username).first()
             if user == None:
                 flash("نام کاربری یا رمز عبور نامعتبر است")
                 return redirect(url_for('user.login'))
+            
             if sha256_crypt.verify(password, user.password):
+                login_user(user)
                 return redirect(url_for('user.dashboard'))
             else:
                 flash("نام کاربری یا رمز عبور نامعتبر است")
@@ -96,7 +105,7 @@ def cart():
 @app.route("/user/dashboard" , methods=["GET"])
 @login_required
 def dashboard():
-    return "this is dashboard"
+    return render_template("user/dashboard.html")
 
 @app.route("/payment" , methods=["GET"])
 @login_required
@@ -116,8 +125,8 @@ def payment():
     db.session.commit()
     
     return redirect(url)
+
 @app.route("/verify" , methods=["GET"])
-@login_required
 def verify():
     token =  request.args.get('token')
     pay = Payment.query.filter(Payment.token == token).first_or_404()
@@ -146,3 +155,9 @@ def verify():
     db.session.commit()
     
     return redirect(url_for("user.dashboard"))
+
+@app.route("/user/dashboard/order/<id>" , methods=["GET"])
+@login_required
+def order(id):
+    cart =  current_user.carts.filter(Cart.id == id).first_or_404()
+    return render_template("user/order.html" , cart = cart)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <title> سفارش شماره ی {{ cart.id }}</title>
+{% endblock header %}
+
+{% block body %}
+    <h1>user dashboard panel</h1>
+
+    
+    {{ cart.status }} <br>
+    {% for item in cart.cart_items %}
+        {{ item.product.name }} -- {{ item.price }} <br>
+    {% endfor %}
+        
+{% endblock body %}
