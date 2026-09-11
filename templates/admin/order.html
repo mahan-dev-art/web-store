@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <title>order | داشبورد ادمین</title>
+{% endblock header %}
+
+{% block body %}
+    <h1>orders</h1>
+    <form action="#" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <select name="status">
+            <option value="pending" {% if cart.status == "pending" %} selected {% endif %}>در انتضار پرداخت</option>
+            <option value="paid" {% if cart.status == "paid" %} selected {% endif %}>پرداخت شده</option>
+            <option value="sent" {% if cart.status == "sent" %} selected {% endif %}>ارسال شده</option>
+            <option value="rejected" {% if cart.status == "rejected" %} selected {% endif %}>لغو شده</option>
+        </select>
+        <input type="submit" value="تایید">
+    </form>
+    {{ cart.get_status_persian() }}
+    <div>
+        {% for item in cart.cart_items %}
+            {{ item.product.name }} <br>
+            {{ item.product.price }} <br>
+        {% endfor %}
+    </div>
+        
+    
+        
+{% endblock body %}

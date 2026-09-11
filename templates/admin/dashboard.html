@@ -7,4 +7,14 @@
 {% block body %}
     <h1>dashboard</h1>
     <a href="/admin/dashboard/products">صفحه محصولات</a>
+
+    <div>
+        {% for cart in carts %}
+            <b>نام کاربری : </b>{{ cart.user.username }} <b>وضعیت پرداخت : </b>{{ cart.get_status_persian() }}
+            <br> 
+            <a href="{{ url_for('admin.order' , id=cart.id) }}">مشخصات بیشتر</a>
+        {% endfor %}
+    </div>
+    
+        
 {% endblock body %}
