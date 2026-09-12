@@ -14,6 +14,8 @@ app = Blueprint("user" , __name__)
 @app.route("/user/login" , methods=["POST","GET"])
 def login():
     if request.method == "GET":
+        if current_user.is_authenticated :
+            return redirect(url_for("user.dashboard"))
         return render_template("user/login.html")
     else:
         username = request.form.get("username" , None)

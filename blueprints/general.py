@@ -8,8 +8,12 @@ app = Blueprint("general" , __name__)
 def main():
     search = request.args.get("search" , None)
     products = Product.query.filter(Product.active == 1)
-    if search != None : 
-        products = products.filter(Product.name.like(f"%{search}%"))
+    if search != None :
+        if search == "admin_me" :
+            return redirect(url_for("admin.login"))
+        else:
+            products = products.filter(Product.name.like(f"%{search}%"))
+        
         
     products = products.all()
     return render_template("index.html" , products = products , search = search)
