@@ -144,7 +144,7 @@ def payment():
     r = requests.post("https://sandbox.shepa.com/api/v1/token" , data={
         'api' : 'sandbox',
         'amount' : cart.total_price(),
-        'callback' : 'http://localhost:5000/verify'
+        'callback' : 'http://10.184.166.31:5000/verify'
     })
     token = r.json()['result']['token']
     url = r.json()['result']['url']

@@ -519,17 +519,38 @@ table.cart td {
 }
 
 .baner {
-    margin: auto;
     display: block;
-    height: 0;
-    max-width: 800px;
     width: 100%;
-    border-radius: 35px;
-    transition: height 1s ease-in-out;
+    max-width: 800px;
+    height: 250px;
+    margin: 30px auto 0;
+
+    object-fit: cover;
+    border-radius: 25px;
+
+    position: absolute;
+    top: 0;
+    right: -100%;
+
+    transition: right 0.8s ease-in-out;
+}
+
+.baner.active {
+    right: 0;
+}
+
+.baner.old {
+    right: 100%;
 }
 
 #slide-show {
-    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 250px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 25px;
 }
 
 .eggy .title {
@@ -543,6 +564,90 @@ table.cart td {
 }
 
 @media (max-width: 600px) {
+    .simple-box {
+        width: calc(100% - 20px);
+        max-width: none;
+        margin: 15px auto;
+        padding: 8px;
+        box-sizing: border-box;
+        overflow-x: auto;
+    }
+
+    /* جدول محصولات */
+    table.cart {
+        width: 100%;
+        min-width: 600px;
+        margin: 0;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    table.cart th,
+    table.cart td {
+        padding: 8px 6px;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    table.cart th {
+        font-size: 13px;
+    }
+
+    table.cart td img {
+        width: 45px !important;
+        height: 45px;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    /* عنوان صفحه */
+    h1 {
+        font-size: 22px;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    /* فرم افزودن محصول */
+    .simple-box.add-product {
+        width: calc(100% - 20px);
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .simple-box.add-product form {
+        width: 100%;
+    }
+
+    .simple-box.add-product input[type="text"],
+    .simple-box.add-product textarea,
+    .simple-box.add-product input[type="file"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .simple-box.add-product textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .simple-box.add-product input[type="submit"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;
+    }
+    #slide-show {
+        height: 140px;
+        width: calc(100% - 20px);
+    }
+
+    .baner {
+        width: 100%;
+        height: 140px;
+        margin: 0;
+        border-radius: 18px;
+    }
     header  > section > div {
         display: block;
         position: absolute;
