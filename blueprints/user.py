@@ -126,34 +126,49 @@ def payment():
     
     return redirect(url)
 
-@app.route("/verify" , methods=["GET"])
+@app.route("/verify", methods=["GET"])
 def verify():
-    token =  request.args.get('token')
+    token = request.args.get('token')
+
     pay = Payment.query.filter(Payment.token == token).first_or_404()
-    r = requests.post("https://sandbox.shepa.com/api/v1/verify" , data={
-        'api' : 'sandbox',
-        'amount' : pay.price,
-        'token' : token
-    })
-    
+
+    r = requests.post(
+        "https://sandbox.shepa.com/api/v1/verify",
+        data={
+            'api': 'sandbox',
+            'amount': pay.price,
+            'token': token
+        }
+    )
+
     pay_status = bool(r.json()['success'])
+
     if pay_status == True:
-        
+
         refid = r.json()['result']['refid']
         transaction_id = r.json()['result']['transaction_id']
         card_pan = r.json()['result']['card_pan']
-        
+
         pay.card_pan = card_pan
         pay.transaction_id = transaction_id
         pay.refid = refid
         pay.status = "success"
         pay.cart.status = "paid"
+
+        # پیدا کردن صاحب سبد خرید
+        user = User.query.filter(User.id == pay.cart.user_id).first()
+
+        if user:
+            login_user(user)
+
         flash("پرداخت موفقیت آمیز بود")
-    else :
-        flash("پرداخت با خطا مواجه شد")
+
+    else:
         pay.status = "failed"
+        flash("پرداخت با خطا مواجه شد")
+
     db.session.commit()
-    
+
     return redirect(url_for("user.dashboard"))
 
 @app.route("/user/dashboard/order/<id>" , methods=["GET"])

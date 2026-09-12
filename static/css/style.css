@@ -271,6 +271,11 @@ a > img {
     margin: 10px;
 }
 
+.tag.green {
+    text-decoration: none;
+    color: #555;
+}
+
 .tag > img {
     width: 20px;
     margin: 5px;
@@ -308,6 +313,15 @@ a > img {
     font-size: 13px;
     font-weight: bold;
     color: #555;
+}
+
+.price-box {
+    display: flex;
+    margin: 10px;
+}
+
+#price {
+    margin: 0 10px;
 }
 
 .add-to-cart-btn2 {
@@ -362,6 +376,53 @@ a > img {
     width: 100%;
     margin: 10px;
     font-size: 20px;
+}
+
+.simple-box {
+    background-color: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    max-width: 800px;
+    margin: 20px auto auto;
+    padding: 10px;
+    overflow: auto;
+}
+
+table.cart {
+    margin: auto;
+}
+
+table.cart td {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.527);
+    padding: 5px;
+}
+
+.pay-btn {
+    text-decoration: none;
+    color: var(--font-color);
+    font-size: 20px;
+    float: left;
+    border-radius: 10px;
+    background-color: rgb(153, 233, 137);
+    padding: 5px;
+    font-weight: 700;
+}
+.cartitem-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding: 2px;
+    text-align: center;
+    display: inline-block;
+    margin:5px;
+    text-decoration: none;
+    color: var(--font-color);
+}
+.remove {
+    background-color: rgba(255, 0, 0, 0.356);
+}
+.add {
+    background-color: rgba(0, 128, 0, 0.493);
 }
 
 @media (max-width: 600px) {

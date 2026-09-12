@@ -1,26 +1,56 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <title>سبد خرید کاربر</title>
+    <title>سبد خرید </title>
 {% endblock header %}
 
 {% block body %}
     
+    {% include 'parts/header.html' %}
     
-    {% if cart != None and cart.cart_items|list|length > 0 %}
-        {% for cart_item in cart.cart_items %}
-            {{ cart_item.product.name }}<br> {{ cart_item.quantity }}<br> {{ cart_item.product.price }}
-            <form action="/remove-from-cart" method="get">
-                <input type="hidden" name="id" value="{{ cart_item.id }}">
-                <input type="submit" value="حذف">
-            </form>
-        {% endfor %}
-        
-        
-        <b>قیمت کل : {{ cart.total_price() }} تومان</b>
 
-        <a href="/payment">پرداخت</a>
-    {% else %}
-    سبد خرید خالی است
-    {% endif %}
+    <section class="simple-box">
+        {% if cart != None and cart.cart_items|list|length > 0 %}
+            <table class="cart">
+                <tr>
+                    <th>محصول</th>
+                    <th>تعداد</th>
+                    <th>قیمت</th>
+                </tr>
+
+                {% for cart_item in cart.cart_items %}
+                    <tr>
+                        <td>
+                            {{ cart_item.product.name }}
+                        </td>
+
+                        <td>
+                            <a class="cartitem-btn remove" href="/remove-from-cart?id={{ cart_item.id }}">-</a>{{ cart_item.quantity }}<a class="cartitem-btn add" href="/add-to-cart?id={{ cart_item.product.id }}">+</a>
+                        </td>
+
+                        <td id="price">
+                            {{ cart_item.product.price }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td> قیمت کل :</td>
+                    <td></td>
+                    <td><span id="price">{{ cart.total_price() }}</span> تومان</td>
+                </tr>
+            </table>
+            <a class="pay-btn" href="/payment">پرداخت</a>
+
+        {% else %}
+        سبد خرید خالی است
+        {% endif %}
+    </section>
+
+    <script>
+        document.querySelectorAll('#price').forEach(price => {
+            price.textContent = Number(price.textContent).toLocaleString('fa-IR');
+        });
+    </script>
+
+    
 {% endblock body %}
