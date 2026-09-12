@@ -1,17 +1,43 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <title>MTeck</title>
+  <title>{{ my_config.SITE_NAME}}</title>
 {% endblock %}
 
 {% block body %}
   {% include 'parts/header.html' %}
 
-  <img class="baner" src="{{ url_for('static' , filename='images/baner.png') }}" alt="">
+  <div id="slide-show">
+    <img class="baner" src="{{ url_for('static' , filename=my_config.BANER1_FILE_ADDRESS) }}" alt="">
+    <a href="http://localhost:5000/?search=%D9%84%D9%BE+%D8%AA%D8%A7%D9%BE">
+      <img class="baner" src="{{ url_for('static' , filename=my_config.BANER2_FILE_ADDRESS) }}" alt="">
+    </a>
+    <a href="http://localhost:5000/?search=%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84">
+      <img class="baner" src="{{ url_for('static' , filename=my_config.BANER3_FILE_ADDRESS) }}" alt="">
+    </a>
+  </div>
 
   <section class="products">
     {% for p in products %}
         {% include 'parts/product.html' %}
     {% endfor %}
   </section>
+  <script> 
+    const slide_show_items = document.getElementsByClassName("baner");
+    var next_slide = 0;
+    const change_slide_show = ()=> {
+      if (next_slide > slide_show_items.length -1)
+        next_slide = 0
+
+      if (next_slide == 0)
+        slide_show_items[slide_show_items.length-1].style.height = "0"
+      else
+        slide_show_items[next_slide - 1].style.height = "0"
+      slide_show_items[next_slide].style.height = "400px"
+      next_slide ++
+
+    }
+    change_slide_show()
+    setInterval(change_slide_show , 3000)
+  </script>
 {% endblock %}

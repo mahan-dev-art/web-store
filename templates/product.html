@@ -16,20 +16,20 @@
             <h4>شماره محصول : {{ product.id }}</h4>
 
             <span class="tag red big" style="margin-right: 5px;">
-                <img src="{{ url_for('static' , filename='theme-images/return.png') }}">
-                ۷ روز ضمانت بازگشت کالا
+                <img src="{{ url_for('static' , filename=my_config.feature1_file_address) }}">
+                {{ my_config.feature1 }}
             </span>
             <span class="tag blue big" style="margin-right: 5px;">
-                <img src="{{ url_for('static' , filename='theme-images/free-shipping.png') }}">
-                ارسال رایگان
+                <img src="{{ url_for('static' , filename=my_config.feature2_file_address) }}">
+                {{ my_config.feature2 }}
             </span>
             <span class="tag yellow big" style="margin-right: 5px;">
-                <img src="{{ url_for('static' , filename='theme-images/secure-payment.png') }}">
-                پرداخت امن
+                <img src="{{ url_for('static' , filename=my_config.feature3_file_address) }}">
+                {{ my_config.feature3 }}
             </span>
             <span class="tag green big" style="margin-right: 5px;">
-                <img src="{{ url_for('static' , filename='theme-images/warranty.png') }}">
-                ضمانت کالا
+                <img src="{{ url_for('static' , filename=my_config.feature4_file_address) }}">
+                {{ my_config.feature4 }}
             </span>
 
             <div class="price">
@@ -40,7 +40,7 @@
     </div>
 
     <article class="product-description-box">
-        <h2>مشخصات</h2>
+        <h2>توضیحات</h2>
         <p>{{ product.description }}</p>
     </article>
 

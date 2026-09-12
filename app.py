@@ -32,6 +32,10 @@ def unauthorized():
     flash("لطفا اول وارد حساب کاربری تان بشوید")
     return redirect(url_for("user.login"))
 
+@app.context_processor
+def inject_dict_for_all_templates():
+    return dict(my_config=config)
+
 with app.app_context():
     db.create_all()
 

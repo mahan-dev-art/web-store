@@ -1,6 +1,6 @@
 <header>
     <section>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MTeck" />
+        <img src="{{ url_for('static', filename=my_config.LOGO_FILE_ADDRESS) }}" alt="{{ my_config.SITE_NAME }}" />
 
         <div id="header_menu">
             <span id="header_menu_close_btn" onclick="javascript:change_header_menu(false)">X</span>
