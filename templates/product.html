@@ -33,7 +33,7 @@
             </span>
 
             <div class="price">
-                <b>{{ '{:,}'.format(product.price) }}</b> <b>تومان</b>
+                <b id="price">{{ product.price }}</b>
                 <a class="add-to-cart-btn2" href="/add-to-cart?id={{ product.id }}"><img src="{{ url_for('static' , filename='theme-images/cart.png') }}" alt=""> افزودن به سبد خرید</a>
             </div>
         </section>

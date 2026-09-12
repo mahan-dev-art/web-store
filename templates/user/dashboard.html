@@ -5,11 +5,31 @@
 {% endblock header %}
 
 {% block body %}
+
+    {% include "parts/header.html" %}
+
     <h1>user dashboard panel</h1>
 
+
+    <section class="simple-box cart">
+    <h1>سفارشات</h1>
+    <table class="cart">
+      <tr>
+        <th>شماره سفارش</th>
+        <th>وضعیت</th>
+        <th>مشاهده</th>
+      </tr>
+
+      {% for cart in current_user.carts|selectattr('status', '!=', 'pending') %}
+        <tr>
+          <td>{{ cart.id }}</td>
+          <td>{{ cart.get_status_persian() }}</td>
+          <td><a href="{{ url_for('user.order' , id=cart.id) }}">جزيیات</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </section>
+
     
-    {% for cart in current_user.carts|selectattr('status' , '!=' , 'pending') %}
-        <a href="{{ url_for('user.order' , id=cart.id) }}"> {{ cart.id }} -- {{ cart.get_status_persian() }} </a> <br>
-    {% endfor %}
         
 {% endblock body %}

@@ -5,12 +5,32 @@
 {% endblock header %}
 
 {% block body %}
-    <h1>user dashboard panel</h1>
+    {% include "parts/header.html" %}
 
-    
-    {{ cart.get_status_persian() }} <br>
-    {% for item in cart.cart_items %}
-        {{ item.product.name }} -- {{ item.price }} <br>
-    {% endfor %}
+
+    <section class="simple-box cart">
+    <h1>سفارش شماره ی  {{ cart.id }}  ≫ {{ cart.get_status_persian() }}</h1>
+    <table class="cart">
+      <tr>
+        <th>شماره سفارش</th>
+        <th>محصول</th>
+        <th>قیمت</th>
+        <th>تعداد</th>
+      </tr>
+
+      {% for item in cart.cart_items %}
+        <tr>
+          <td>{{ item.product.id }}</td>
+          <td>{{ item.product.name }}</td>
+          <td id="price">{{ item.product.price }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td>قیمت کل :</td>
+        <td colspan="2" style="text-align: left;" id="price">{{ cart.total_price() }}</td>
+      </tr>
+    </table>
+  </section>
         
 {% endblock body %}

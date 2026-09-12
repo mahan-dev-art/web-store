@@ -13,9 +13,13 @@
   </head>
   <body>
     {% block body %}
-
+        
     {% endblock %}
     <script>
+
+      document.querySelectorAll('#price').forEach(price => {
+            price.textContent = Number(price.textContent).toLocaleString('fa-IR') + "تومان";
+        });
       
       const header_menu = document.getElementById('header_menu')
       const change_header_menu = (show) => {

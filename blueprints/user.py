@@ -105,7 +105,8 @@ def cart():
 @app.route("/user/dashboard" , methods=["GET"])
 @login_required
 def dashboard():
-    return render_template("user/dashboard.html")
+    cart = current_user.carts.filter(Cart.status == "pending").first()
+    return render_template("user/dashboard.html" , cart = cart)
 
 @app.route("/payment" , methods=["GET"])
 @login_required

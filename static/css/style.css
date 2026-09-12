@@ -330,8 +330,12 @@ a > img {
 
 #price {
     margin: 0 10px;
+    font-weight: 700;
 }
 
+td#price {
+    font-weight: normal;
+}
 
 .product-detail-box {
     margin-top: 50px;

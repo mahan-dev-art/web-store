@@ -6,9 +6,6 @@
 
     <p>{{ p.description|truncate(50) }}</p>
 
-    <div class="price">
-      <b>{{ '{:,}'.format(p.price) }}</b>
-      <span>تومان</span>
-    </div>
+    <b id="price">{{ p.price }}</b>
   </section>
 </a>
