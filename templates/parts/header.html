@@ -6,6 +6,7 @@
             <span id="header_menu_close_btn" onclick="javascript:change_header_menu(false)">X</span>
             
             {% if request.endpoint.startswith("admin") %}
+                <a href="/"><img src="{{ url_for('static' , filename='theme-images/home.png') }}"></a>
                 <a href="/admin/dashboard/products"><img src="{{ url_for('static' , filename='theme-images/products.png') }}"></a>
                 <a href="/admin/dashboard"><img src="{{ url_for('static' , filename='theme-images/admin.png') }}"></a>
             
