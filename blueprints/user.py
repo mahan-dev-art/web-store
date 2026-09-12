@@ -104,11 +104,38 @@ def cart():
     cart = current_user.carts.filter(Cart.status == "pending").first()
     return render_template("user/cart.html" , cart = cart)
 
-@app.route("/user/dashboard" , methods=["GET"])
+@app.route("/user/dashboard" , methods=["GET" , "POST"])
 @login_required
 def dashboard():
-    cart = current_user.carts.filter(Cart.status == "pending").first()
-    return render_template("user/dashboard.html" , cart = cart)
+    if request.method == "GET" :
+        cart = current_user.carts.filter(Cart.status == "pending").first()
+        return render_template("user/dashboard.html" , cart = cart)
+    else :
+        username = request.form.get("username" , None)
+        password = request.form.get("password" , None)
+        phone = request.form.get("phone" , None)
+        address = request.form.get("address" , None)
+        
+        if current_user.username != username :
+            
+            user = User.query.filter(User.username == username).first()
+            if user != None:
+                flash("نام کاربری از قبل انتخاب شده است")
+                return redirect(url_for('user.login'))
+            
+            else:
+                current_user.username = username
+        
+        if password != None :
+            current_user.password = sha256_crypt.encrypt(password)
+        
+        current_user.address = address
+        current_user.phone = phone
+        
+        db.session.commit()
+        
+        flash("اطلاعات شما با موفقیت تغییر یافت")
+        return redirect("/user/dashboard")
 
 @app.route("/payment" , methods=["GET"])
 @login_required
@@ -179,3 +206,9 @@ def verify():
 def order(id):
     cart =  current_user.carts.filter(Cart.id == id).first_or_404()
     return render_template("user/order.html" , cart = cart)
+@app.route("/user/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("با موفقیت خارج شدید")
+    return redirect("/")

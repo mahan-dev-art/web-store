@@ -282,6 +282,8 @@ a > img {
 }
 
 .tag.red {
+    text-decoration: none;
+    color: var(--font-color);
     border: 1px solid rgba(255, 0, 0, 0.582);
     background: rgba(255, 0, 0, 0.1);
     text-shadow: 10px 5px 10px rgba(255, 0, 0, 0.432);
@@ -305,7 +307,6 @@ a > img {
     text-shadow: 10px 5px 10px rgba(102, 255, 0, 0.432);
     box-shadow: 10px 5px 10px rgba(102, 255, 0, 0.432);
 }
-
 .price {
     display: flex;
     align-items: center;
