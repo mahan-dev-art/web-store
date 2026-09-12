@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     {% block header %}
 
     {% endblock %}
@@ -12,5 +12,15 @@
     {% block body %}
 
     {% endblock %}
+    <script>
+      const header_menu = document.getElementById('header_menu')
+      const change_header_menu = (show) => {
+        if (show) {
+          header_menu.style.height = header_menu.scrollHeight + "px";
+        } else {
+          header_menu.style.height = "0";
+        }
+      }
+    </script>
   </body>
 </html>

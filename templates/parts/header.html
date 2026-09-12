@@ -2,12 +2,14 @@
     <section>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MTeck" />
 
-        <div>
+        <div id="header_menu">
+            <span id="header_menu_close_btn" onclick="javascript:change_header_menu(false)">X</span>
             <form action="/" method="get">
                 <input type="search" name="search" value="{{ search if search != None }}" placeholder="... جستجو">
             </form>
             <a href="/">صفحه اصلی</a>
             <a href="/about">درباره ی ما</a>
         </div>
+        <img src="{{ url_for('static', filename='theme-images/menu.png') }}" id="header-menu-btn" onclick="javascript:change_header_menu(true)">
     </section>
 </header>
