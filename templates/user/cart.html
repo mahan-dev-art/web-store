@@ -36,7 +36,7 @@
                 <tr>
                     <td> قیمت کل :</td>
                     <td></td>
-                    <td><span id="price">{{ cart.total_price() }}</span> تومان</td>
+                    <td id="price">{{ cart.total_price() }}</td>
                 </tr>
             </table>
             <a class="pay-btn" href="/payment">پرداخت</a>
@@ -45,12 +45,6 @@
         سبد خرید خالی است
         {% endif %}
     </section>
-
-    <script>
-        document.querySelectorAll('#price').forEach(price => {
-            price.textContent = Number(price.textContent).toLocaleString('fa-IR');
-        });
-    </script>
 
     
 {% endblock body %}
