@@ -284,18 +284,26 @@ a > img {
 .tag.red {
     border: 1px solid rgba(255, 0, 0, 0.582);
     background: rgba(255, 0, 0, 0.1);
+    text-shadow: 10px 5px 10px rgba(255, 0, 0, 0.432);
+    box-shadow: 10px 5px 10px rgba(255, 0, 0, 0.432);
 }
 .tag.blue {
     border: 1px solid rgba(0, 162, 255, 0.582);
     background: rgba(0, 162, 255, 0.1);
+    text-shadow: 10px 5px 10px rgba(0, 162, 255, 0.432);
+    box-shadow: 10px 5px 10px rgba(0, 162, 255, 0.432);
 }
 .tag.yellow {
     border: 1px solid rgba(255, 196, 0, 0.582);
     background: rgba(255, 196, 0, 0.1);
+    text-shadow: 10px 5px 10px rgba(255, 196, 0, 0.432);
+    box-shadow: 10px 5px 10px rgba(255, 196, 0, 0.432);
 }
 .tag.green {
     border: 1px solid rgba(102, 255, 0, 0.582);
     background: rgba(102, 255, 0, 0.1);
+    text-shadow: 10px 5px 10px rgba(102, 255, 0, 0.432);
+    box-shadow: 10px 5px 10px rgba(102, 255, 0, 0.432);
 }
 
 .price {
@@ -324,19 +332,6 @@ a > img {
     margin: 0 10px;
 }
 
-.add-to-cart-btn2 {
-    text-decoration: none;
-    padding: 5px;
-    color: #fafafa;
-    font-size: 12px;
-    border-radius: 10px;
-    background: rgb(124, 158, 99);
-    font-weight: 300;
-}
-
-.add-to-cart-btn2:hover {
-    opacity: 0.5;
-}
 
 .product-detail-box {
     margin-top: 50px;
@@ -351,7 +346,7 @@ a > img {
 .product-description-box {
     max-width: 800px;
     margin: auto;
-
+    
 }
 
 .product-description-box p {
@@ -381,11 +376,15 @@ a > img {
 .simple-box {
     background-color: #ffffff;
     border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-    max-width: 800px;
+    border-radius: 200px;
+    max-width: 351px;
     margin: 20px auto auto;
     padding: 10px;
     overflow: auto;
+}
+
+.simple-box:hover {
+    border-radius: 25px;
 }
 
 table.cart {
@@ -405,8 +404,15 @@ table.cart td {
     border-radius: 10px;
     background-color: rgb(153, 233, 137);
     padding: 5px;
-    font-weight: 700;
+    font-weight: 500;
+    text-shadow: 10px 5px 10px rgba(153, 233, 137, 0.432);
+    box-shadow: 10px 5px 10px rgba(153, 233, 137, 0.432);
 }
+
+.pay-btn:hover {
+    opacity: 0.5;
+}
+
 .cartitem-btn {
     width: 25px;
     height: 25px;
@@ -420,9 +426,78 @@ table.cart td {
 }
 .remove {
     background-color: rgba(255, 0, 0, 0.356);
+    text-shadow: 10px 5px 10px rgba(255, 0, 0, 0.432);
+    box-shadow: 10px 5px 10px rgba(255, 0, 0, 0.432);
 }
 .add {
     background-color: rgba(0, 128, 0, 0.493);
+    text-shadow: 10px 5px 10px rgba(0, 128, 0, 0.432);
+    box-shadow: 10px 5px 10px rgba(0, 128, 0, 0.432);
+}
+
+.add:hover , .remove:hover {
+    opacity: 0.5;
+}
+
+#login-box {
+    text-align: center;
+}
+
+#register-box {
+    display: none;
+    text-align: center;
+}
+
+.simple-box input , textarea{
+    display: block;
+    color: var(--font-color);
+    font-size: 16px;
+    font-family: "VazirMatn";
+    border-radius: 10px;
+    margin: 50px auto;
+    border: 1px solid rgba(0, 0, 0, 0.603);
+    box-shadow: 10px 5px 10px rgb(0, 162, 255);
+    padding: 2px 10px;
+}
+
+.simple-box input[type='submit'] {
+    all:unset;
+    width: 100%;
+    border-radius: 10px;
+    max-width: 290px;
+    cursor: pointer;
+    margin: auto;
+    display: block;
+    text-align: center;
+    background: transparent;
+    border: 3px solid rgb(0, 162, 255);
+    padding: 5px;
+    color: rgb(0, 162, 255);
+    font-weight: 800;
+    transition: all 0.5s ease-in-out;
+    text-shadow: 10px 5px 10px rgba(0, 162, 255, 0.432);
+    box-shadow: 10px 5px 10px rgba(0, 162, 255, 0.432);
+}
+
+.simple-box input[type="submit"]:hover {
+    background: rgb(0, 52, 82);
+    color: #ffffff;
+}
+
+.add-to-cart-btn2 {
+    text-decoration: none;
+    padding: 5px;
+    color: rgb(0, 162, 255);
+    font-size: 12px;
+    border-radius: 10px;
+    background: transparent;
+    font-weight: 300;
+    text-shadow: 10px 5px 10px rgb(0, 162, 255);
+    box-shadow: 10px 5px 10px rgb(0, 162, 255);
+}
+
+.add-to-cart-btn2:hover {
+    background: rgb(0, 52, 82);
 }
 
 @media (max-width: 600px) {
