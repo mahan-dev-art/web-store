@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/eggy.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/progressbar.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}" />
     {% block header %}
 
     {% endblock %}
@@ -13,14 +16,28 @@
 
     {% endblock %}
     <script>
+      
       const header_menu = document.getElementById('header_menu')
       const change_header_menu = (show) => {
-        if (show) {
-          header_menu.style.height = header_menu.scrollHeight + "px";
-        } else {
-          header_menu.style.height = "0";
-        }
-      }
+          if (show) {
+            header_menu.style.height = header_menu.scrollHeight + "px";
+          } else {
+            header_menu.style.height = "0";
+          }
+        };
+    </script>
+    <script type="module">
+      import { Eggy } from '{{ url_for('static' , filename='js/eggy.js') }}';
+      {% for m in get_flashed_messages() %}
+        Eggy({
+          title:  'اطلاعات',
+          message:  "{{ m }}",
+          position: 'top-left',
+          type: 'info',
+          duration: 5000,
+        });
+          
+      {% endfor %}
     </script>
   </body>
 </html>
