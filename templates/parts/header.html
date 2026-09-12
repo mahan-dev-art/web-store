@@ -4,18 +4,26 @@
 
         <div id="header_menu">
             <span id="header_menu_close_btn" onclick="javascript:change_header_menu(false)">X</span>
-            <form action="/" method="get">
-                <input type="search" name="search" value="{{ search if search != None }}" placeholder="... جستجو">
-            </form>
-            <a href="/"><img src="{{ url_for('static' , filename='theme-images/home.png') }}"></a>
             
-            {% if current_user.is_authenticated %}
-                <a href="/user/dashboard"><img src="{{ url_for('static' , filename='theme-images/dashboard.png') }}"></a>
+            {% if request.endpoint.startswith("admin") %}
+                <a href="/admin/dashboard/products"><img src="{{ url_for('static' , filename='theme-images/products.png') }}"></a>
+                <a href="/admin/dashboard"><img src="{{ url_for('static' , filename='theme-images/admin.png') }}"></a>
+            
             {% else %}
-                <a href="/user/login"><img src="{{ url_for('static' , filename='theme-images/login.png') }}"></a>
+                <form action="/" method="get">
+                    <input type="search" name="search" value="{{ search if search != None }}" placeholder="... جستجو">
+                </form>
+
+                <a href="/"><img src="{{ url_for('static' , filename='theme-images/home.png') }}"></a>
+                
+                {% if current_user.is_authenticated %}
+                    <a href="/user/dashboard"><img src="{{ url_for('static' , filename='theme-images/dashboard.png') }}"></a>
+                {% else %}
+                    <a href="/user/login"><img src="{{ url_for('static' , filename='theme-images/login.png') }}"></a>
+                {% endif %}
+                <a href="/cart"><img src="{{ url_for('static' , filename='theme-images/cart.png') }}"></a>
+                <a href="/about"><img src="{{ url_for('static' , filename='theme-images/about.png') }}"></a>
             {% endif %}
-            <a href="/cart"><img src="{{ url_for('static' , filename='theme-images/cart.png') }}"></a>
-            <a href="/about"><img src="{{ url_for('static' , filename='theme-images/about.png') }}"></a>
         </div>
         <img src="{{ url_for('static', filename='theme-images/menu.png') }}" id="header-menu-btn" onclick="javascript:change_header_menu(true)">
     </section>

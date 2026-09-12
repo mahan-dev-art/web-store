@@ -5,25 +5,39 @@
 {% endblock header %}
 
 {% block body %}
-    <h1>orders</h1>
-    <form action="#" method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <select name="status">
-            <option value="pending" {% if cart.status == "pending" %} selected {% endif %}>در انتضار پرداخت</option>
-            <option value="paid" {% if cart.status == "paid" %} selected {% endif %}>پرداخت شده</option>
-            <option value="sent" {% if cart.status == "sent" %} selected {% endif %}>ارسال شده</option>
-            <option value="rejected" {% if cart.status == "rejected" %} selected {% endif %}>لغو شده</option>
-        </select>
-        <input type="submit" value="تایید">
-    </form>
-    {{ cart.get_status_persian() }}
-    <div>
-        {% for item in cart.cart_items %}
-            {{ item.product.name }} <br>
-            {{ item.product.price }} <br>
-        {% endfor %}
-    </div>
-        
-    
-        
+    {% include 'parts/header.html' %}
+
+    <section class="simple-box cart">
+        <h1>سفارش شماره ی  {{ cart.id }}  ≫ {{ cart.get_status_persian() }}</h1>
+        <form action="#" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <select name="status">
+                <option value="paid" {% if cart.status == "paid" %} selected {% endif %}>پرداخت شده</option>
+                <option value="sent" {% if cart.status == "sent" %} selected {% endif %}>ارسال شده</option>
+                <option value="rejected" {% if cart.status == "rejected" %} selected {% endif %}>لغو شده</option>
+            </select>
+            <input type="submit" value="تغییر">
+        </form>
+        <table class="cart">
+            <tr>
+            <th>شماره سفارش</th>
+            <th>محصول</th>
+            <th>قیمت</th>
+            <th>تعداد</th>
+            </tr>
+
+            {% for item in cart.cart_items %}
+            <tr>
+                <td>{{ item.product.id }}</td>
+                <td>{{ item.product.name }}</td>
+                <td id="price">{{ item.product.price }}</td>
+                <td>{{ item.quantity }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+            <td>قیمت کل :</td>
+            <td colspan="2" style="text-align: left;" id="price">{{ cart.total_price() }}</td>
+            </tr>
+        </table>
+    </section>
 {% endblock body %}

@@ -5,11 +5,16 @@
 {% endblock header %}
 
 {% block body %}
-    <h1>admin login</h1>
-    <form action="#" method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder="password">
-        <input type="submit" value="Enter">
-    </form>
-{% endblock body %}
+    <div class="simple-box circle">
+        <div id="login-box">
+            <h2>ورود</h2>
+            <form action="#" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input type="text" name="username" placeholder="نام کاربری">
+                <input type="password" name="password" placeholder="رمز عبور">
+                <input type="submit" value="ورود">
+            </form>
+        </div>
+    </div>
+        
+{% endblock %}

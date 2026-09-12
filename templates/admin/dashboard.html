@@ -5,16 +5,33 @@
 {% endblock header %}
 
 {% block body %}
-    <h1>dashboard</h1>
-    <a href="/admin/dashboard/products">صفحه محصولات</a>
+    {% include 'parts/header.html' %}
+    <section class="simple-box cart">
+        <h1>سفارشات</h1>
 
-    <div>
-        {% for cart in carts %}
-            <b>نام کاربری : </b>{{ cart.user.username }} <b>وضعیت پرداخت : </b>{{ cart.get_status_persian() }}
-            <br> 
-            <a href="{{ url_for('admin.order' , id=cart.id) }}">مشخصات بیشتر</a>
-        {% endfor %}
-    </div>
-    
+        {% if carts|selectattr('status', '!=', 'pending')|list|length > 0 %}
+            <table class="cart">
+                <tr>
+                    <th>شماره سفارش</th>
+                    <th>نام کاربری</th>
+                    <th>وضعیت</th>
+                    <th>مشاهده</th>
+                </tr>
+
+                {% for cart in carts|selectattr('status', '!=', 'pending') %}
+                    <tr>
+                    <td>{{ cart.id }}</td>
+                    <td>{{ cart.user.username }}</td>
+                    <td>{{ cart.get_status_persian() }}</td>
+                    <td><a href="{{ url_for('admin.order' , id=cart.id) }}">جزيیات</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <i>سفارشی وجود ندارد</i>
+        {% endif %}
+            
+
+    </section>
         
 {% endblock body %}

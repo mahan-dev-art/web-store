@@ -43,6 +43,7 @@ def order(id):
         
         db.session.commit()
         
+        flash("تغییرات با موفقیت لحاظ شد")
         return redirect(url_for('admin.order' , id=id))    
         
         
@@ -63,6 +64,7 @@ def products():
     db.session.commit()
 
     file.save(f"static/cover/{p.id}.png")
+    flash("محصول با موفقیت ثبت شد")
     return redirect("/admin/dashboard/products")
 
 
@@ -87,5 +89,5 @@ def edit_product(id):
 
     if file.filename != "":
         file.save(f'static/cover/{id}.png')
-    
+    flash("تغییرات محصول با موفقیت ثبت شد")
     return redirect(url_for("admin.products" , id=id))

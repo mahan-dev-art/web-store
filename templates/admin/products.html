@@ -5,35 +5,48 @@
 {% endblock header %}
 
 {% block body %}
+    {% include 'parts/header.html' %}
+
+    <section class="simple-box">
+            <table class="cart">
+                <tr>
+                    <th>عکس</th>
+                    <th>اسم</th>
+                    <th>توضیحات</th>
+                    <th>قیمت</th>
+                    <th>فعال</th>
+                </tr>
+
+                {% for p in products %}
+                    <tr>
+                        <td><img src="/static/cover/{{ p.id }}.png" style="width: 20px;"></td>
+                        <td>{{ p.name }}</td>
+                        <td>{{ p.description|truncate(50) }}</td>
+                        <td id="price">{{ p.price }}</td>
+                        <td>{{ "بله" if p.active == 1 else "خیر" }}</td>
+                        <td><a href="{{ url_for('admin.edit_product', id=p.id) }}">ویرایش</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+    </section>
     <h1>صفحه محصولات</h1>
     <table>
         <tr>
-            <th>عکس</th>
-            <th>اسم</th>
-            <th>توضیحات</th>
-            <th>قیمت</th>
-            <th>فعال</th>
+            
         </tr>
         
-        {% for p in products %}
-            <tr>
-                <td><img src="/static/cover/{{ p.id }}.png" style="width: 20px;"></td>
-                <td>{{ p.name }}</td>
-                <td>{{ p.description }}</td>
-                <td>{{ p.price }}</td>
-                <td>{{ "بله" if p.active == 1 else "خیر" }}</td>
-                <td><a href="{{ url_for('admin.edit_product', id=p.id) }}">ویرایش</a></td>
-            </tr>
-        {% endfor %}
+        
             
     </table>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label for="cover">cover :</label><input type="file" name="cover"><br>
-        <input type="text" name="name" placeholder="نام محصول"><br>
-        <textarea name="description" placeholder="توضیحات"></textarea><br>
-        <input type="text" name="price" placeholder="قیمت محصول"><br>
-        <label for="active">فعال</label><input type="checkbox" name="active" >
-        <input type="submit" value="submit">
-    </form>
+    <div class="simple-box add-product">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label class="tag yellow" for="cover">کاور محصول</label><input type="file" name="cover"><br>
+            <input type="text" name="name" placeholder="نام محصول"><br>
+            <textarea name="description" placeholder="توضیحات"></textarea><br>
+            <input type="text" name="price" placeholder="قیمت محصول"><br>
+            <label for="active">فعال</label><input type="checkbox" name="active" >
+            <input type="submit" value="submit">
+        </form>
+    </div>
 {% endblock body %}
