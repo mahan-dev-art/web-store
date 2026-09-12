@@ -373,18 +373,27 @@ a > img {
     font-size: 20px;
 }
 
+.simple-box.circle {
+    border-radius: 200px;
+    max-width: 351px;
+}
+.simple-box.circle:hover {
+    border-radius: 25px;
+}
+
 .simple-box {
     background-color: #ffffff;
     border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 200px;
-    max-width: 351px;
+    border-radius: 25px;
+    max-width: 800px;
     margin: 20px auto auto;
     padding: 10px;
     overflow: auto;
 }
 
-.simple-box:hover {
-    border-radius: 25px;
+
+.p {
+    padding: 5px 10px;
 }
 
 table.cart {
