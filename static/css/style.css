@@ -75,6 +75,10 @@
     --font-color: rgb(73, 73, 73);
 }
 
+* {
+    transition: all 0.5s ease-in-out;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -209,6 +213,7 @@ header>section>div>a:hover {
 }
 
 .products {
+    max-width: 1500px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -247,6 +252,46 @@ header>section>div>a:hover {
     background: rgba(90, 141, 88, 0.829);
 }
 
+a {
+    display: flex;
+    align-items: center;
+}
+
+a > img {
+    width: 20px;
+    margin: 0 5px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.tag > img {
+    width: 20px;
+    margin: 5px;
+}
+
+.tag.red {
+    border: 1px solid rgba(255, 0, 0, 0.582);
+    background: rgba(255, 0, 0, 0.1);
+}
+.tag.blue {
+    border: 1px solid rgba(0, 162, 255, 0.582);
+    background: rgba(0, 162, 255, 0.1);
+}
+.tag.yellow {
+    border: 1px solid rgba(255, 196, 0, 0.582);
+    background: rgba(255, 196, 0, 0.1);
+}
+.tag.green {
+    border: 1px solid rgba(102, 255, 0, 0.582);
+    background: rgba(102, 255, 0, 0.1);
+}
 
 .price {
     display: flex;
@@ -270,10 +315,13 @@ header>section>div>a:hover {
     padding: 5px;
     color: #fafafa;
     font-size: 12px;
-    border: 2px solid rgba(14, 255, 0, 0.4);
     border-radius: 10px;
     background: rgb(124, 158, 99);
     font-weight: 300;
+}
+
+.add-to-cart-btn2:hover {
+    opacity: 0.5;
 }
 
 .product-detail-box {
@@ -294,4 +342,10 @@ header>section>div>a:hover {
 
 .product-description-box p {
     text-align: justify;
+}
+
+.similar-products-box {
+    max-width: 1100px;
+    margin: auto;
+    align-items: center;
 }

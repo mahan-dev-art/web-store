@@ -14,9 +14,27 @@
         <section>
             <h1>{{ product.name }}</h1>
             <h4>شماره محصول : {{ product.id }}</h4>
+
+            <span class="tag red big" style="margin-right: 5px;">
+                <img src="{{ url_for('static' , filename='theme-images/return.png') }}">
+                ۷ روز ضمانت بازگشت کالا
+            </span>
+            <span class="tag blue big" style="margin-right: 5px;">
+                <img src="{{ url_for('static' , filename='theme-images/free-shipping.png') }}">
+                ارسال رایگان
+            </span>
+            <span class="tag yellow big" style="margin-right: 5px;">
+                <img src="{{ url_for('static' , filename='theme-images/secure-payment.png') }}">
+                پرداخت امن
+            </span>
+            <span class="tag green big" style="margin-right: 5px;">
+                <img src="{{ url_for('static' , filename='theme-images/warranty.png') }}">
+                ضمانت کالا
+            </span>
+
             <div class="price">
                 <b>{{ '{:,}'.format(product.price) }}</b> <b>تومان</b>
-                <a class="add-to-cart-btn2" href="/add-to-cart?id={{ product.id }}">افزودن به سبد خرید</a>
+                <a class="add-to-cart-btn2" href="/add-to-cart?id={{ product.id }}"><img src="{{ url_for('static' , filename='theme-images/cart.png') }}" alt=""> افزودن به سبد خرید</a>
             </div>
         </section>
     </div>
@@ -25,4 +43,15 @@
         <h2>مشخصات</h2>
         <p>{{ product.description }}</p>
     </article>
+
+    <section class="similar-products-box">
+        <h2>محصولات مشابه</h2>
+        <section class="products">
+            {% for p in another_products %}
+                {% include 'parts/product.html' %}
+            {% endfor %}
+        </section>
+    </section>
+    
+        
 {% endblock body %}

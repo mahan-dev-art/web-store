@@ -1,3 +1,5 @@
 instance/
 static/cover/
 static/images/logo.png
+blueprints/__pycache__/admin.cpython-310.pyc
+blueprints/__pycache__/general.cpython-310.pyc

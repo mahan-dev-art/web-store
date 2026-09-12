@@ -85,7 +85,7 @@ def edit_product(id):
 
     db.session.commit()
 
-    if file != None:
+    if file.filename != "":
         file.save(f'static/cover/{id}.png')
     
     return redirect(url_for("admin.products" , id=id))
