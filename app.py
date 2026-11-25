@@ -1,3 +1,5 @@
+import os
+
 from flask import *
 from blueprints.general import app as general
 from blueprints.admin import app as admin
@@ -11,7 +13,7 @@ from models.user import User
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = config.SQLALCHEMY_DATABASE_URI
-app.config['SECRET_KEY'] = config.SECRET_KEY   
+app.config["SECRET_KEY"] = config.SECRET_KEY
 
 csrf = CSRFProtect(app)
 db.init_app(app)
@@ -29,7 +31,7 @@ def load_user(user_id):
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    flash("لطفا اول وارد حساب کاربری تان بشوید")
+    flash("برای دسترسی به این بخش ابتدا وارد حساب کاربری خود شوید.")
     return redirect(url_for("user.login"))
 
 @app.context_processor
@@ -39,5 +41,9 @@ def inject_dict_for_all_templates():
 with app.app_context():
     db.create_all()
 
-if __name__ == "__main__" :
-    app.run(debug=True , host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(
+        debug=os.environ.get("FLASK_DEBUG") == "1",
+        host=os.environ.get("HOST", "127.0.0.1"),
+        port=int(os.environ.get("PORT", "5000")),
+    )
