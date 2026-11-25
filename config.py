@@ -1,8 +1,11 @@
+import os
 from flask_sqlalchemy import SQLAlchemy
 import time
 
-SECRET_KEY = "gfdgjsdbjcbsdugcsdbcfalavcdb654354"
-SQLALCHEMY_DATABASE_URI = "sqlite:///project.db"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("Set the SECRET_KEY environment variable before starting the app.")
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///project.db")
 db = SQLAlchemy()
 
 def get_current_time():
